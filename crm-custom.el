@@ -46,9 +46,7 @@
 
 ;;; Code:
 
-(provide 'completing-read-multiple-custom)
-;;; completing-read-multiple-custom.el ends here
-
+;;;###autoload
 (define-minor-mode crm-custom-mode
   "Use `completing-read-function' in `completing-read-multiple'.
 
