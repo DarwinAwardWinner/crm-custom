@@ -120,7 +120,7 @@ in `completing-read-multiple'."
     ;; If we failed or didn't do anything, the standard completion
     ;; will run instead
     (unless success
-      ad-do-it))))
+      ad-do-it)))
 
 (provide 'crm-custom)
 
