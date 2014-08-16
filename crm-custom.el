@@ -5,7 +5,7 @@
 ;; Author: Ryan C. Thompson <rct@thompsonclan.org>
 ;; Keywords: completion, minibuffer, multiple elements
 ;; URL: https://github.com/DarwinAwardWinner
-;; Version: 0.3
+;; Version: 0.4
 ;; Created: 2014-08-15
 
 ;; This file is NOT part of GNU Emacs.
