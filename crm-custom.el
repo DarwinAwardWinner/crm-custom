@@ -88,7 +88,6 @@ in `completing-read-multiple'."
                        (nconc def-list-no-empty-string
                               (all-completions "" table predicate)))
          with predicate = nil
-         do (message "Table: %S" table)
          do (setq next-value
                   (completing-read prompt
                                    table
