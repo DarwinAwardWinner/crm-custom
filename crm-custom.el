@@ -81,8 +81,6 @@ in `completing-read-multiple'."
          ;; Save original prompt and construct prompt with defaults
          with orig-prompt = prompt
          with prompt = (concat orig-prompt def-text)
-         ;; Enable entry of empty string with ido
-         with ido-ubiquitous-enable-old-style-default = nil
          ;; Pre-expand completions table
          with table = (delete-dups
                        (nconc def-list-no-empty-string
