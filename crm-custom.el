@@ -7,6 +7,7 @@
 ;; URL: https://github.com/DarwinAwardWinner
 ;; Version: 0.4
 ;; Created: 2014-08-15
+;; Package-Requires: ((cl-lib "0.5"))
 
 ;; This file is NOT part of GNU Emacs.
 
@@ -45,6 +46,7 @@
 ;; Boston, MA 02110-1301, USA.
 
 ;;; Code:
+(require 'cl-lib)
 
 ;;;###autoload
 (define-minor-mode crm-custom-mode
@@ -68,7 +70,7 @@ in `completing-read-multiple'."
   (let ((success nil))
     (when crm-custom-mode
       (ignore-errors
-        (loop
+        (cl-loop
          ;; Initialization stuff
          with return-list = nil
          with next-value = nil
