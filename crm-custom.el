@@ -105,7 +105,7 @@ in `completing-read-multiple'."
          ;; Record successful result
          do (setq success t
                   ad-return-value (or return-list def-list))
-         and return
+         and return nil
          ;; Collect selected item and go again
          else
          collect next-value into return-list
