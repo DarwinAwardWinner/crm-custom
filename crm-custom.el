@@ -54,16 +54,25 @@
 
 When this mode is enabled, `completing-read-multiple' will work
 by calling `completing-read' repeatedly until it receives an
-empty string, and returning all the values read in this way. Note
-that `crm-separator' is purely cosmetic when this mode is
-enabled. It cannot actually be used as a separator.
+empty string, and returning all the values read in this way. This
+is useful because it will use `completing-read-function' to do
+completion, so packages like `ido-ubiquitous' that offer an
+alternative completion system will now work in
+`completing-read-multiple'. (Remember that in ido, you must enter
+an empty string by pressing `C-j', since RET simply selects the
+first completion.)
 
-This is useful because it will use `completing-read-function' to
-do completion, so modes like `ido-ubiquitous-mode' will now work
-in `completing-read-multiple'."
+Note that `crm-separator' is purely cosmetic when this mode is
+enabled. It cannot actually be used as a separator."
   :init-value nil
   :group 'completion
   :global t)
+
+(defvar crm-custom-separator ", "
+  "String to be used as a visual separator in `crm-custom-mode'.
+
+Unlike `crm-separator', this variable is purely cosmetic. Typing
+the separator will not have any special effect.")
 
 (defadvice completing-read-multiple (around use-completing-read-function activate)
   "Do completion by calling `completing-read-function' multiple times."
@@ -77,7 +86,8 @@ in `completing-read-multiple'."
          with def-list = (s-split crm-separator (or def ""))
          with def-list-no-empty-string = (remove "" def-list)
          with def-text = (when def-list-no-empty-string
-                           (concat "(" (s-join crm-separator def-list) ")"))
+                           (concat "(" (mapconcat #'identity def-list
+                                                  crm-custom-separator) ")"))
          ;; Need to clear this
          with def = nil
          ;; Save original prompt and construct prompt with defaults
@@ -113,7 +123,9 @@ in `completing-read-multiple'."
          ;; before looping around again.
          and do (setq
                  prompt (concat orig-prompt "("
-                                (s-join crm-separator return-list) crm-separator)
+                                (mapconcat #'identity return-list
+                                           crm-custom-separator)
+                                crm-custom-separator)
                  table (delete next-value table)
                  initial-input nil))))
     ;; If we failed or didn't do anything, the standard completion
