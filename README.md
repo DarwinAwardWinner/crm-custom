@@ -30,5 +30,5 @@ but it could use the following features to be more user-friendly.
 - Ability to go back to previously completed entries by backspacing at
   an empty input (Currently the only recourse if you want to change a
   previously completed entry is to abort and restart the completion)
-- Map the separator character to continue select the curent entry and
-  move on to the next one.
+- Map the separator character to select the curent entry and move on
+  to the next one.
